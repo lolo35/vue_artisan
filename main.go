@@ -7,6 +7,7 @@ import (
 
 const green = "\033[32m"
 const blue = "\033[34m"
+const red = "\033[31m"
 
 type Artisan struct{}
 
@@ -14,6 +15,8 @@ func Commands() map[string]string {
 	commands := make(map[string]string)
 	commands["make:component"] = "make component"
 	commands["list"] = "Lists all available commands"
+	commands["make:project"] = "Creates a new vite project; add ts argument to create a typecript vite project"
+	commands["make:view"] = "Creates a view file"
 
 	return commands
 }
@@ -29,6 +32,10 @@ func main() {
 		break
 	case "list":
 		artisan.List()
+	case "make:project":
+		artisan.MakeProject(argsWithProg)
+	case "make:view":
+		artisan.MakeView(argsWithProg)
 	default:
 		fmt.Println("Unknown command, use list for all available commands")
 	}
